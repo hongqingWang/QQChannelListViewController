@@ -18,6 +18,10 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
 @property (nonatomic, strong) UIView *carve;
 /// CollectionView
 @property (nonatomic, strong) UICollectionView *collectionView;
+/// MyChannels
+@property (nonatomic, strong) NSMutableArray *myChannelArrayM;
+/// RecommandChannels
+@property (nonatomic, strong) NSMutableArray *recommandChannelArrayM;
 
 @end
 
@@ -27,15 +31,24 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
     
     if (self = [super init]) {
         
+//        NSLog(@"myChannels = %@", myChannels);
+//        self.myChannelArrayM = myChannels.mutableCopy;
+//        NSLog(@"1 - self.myChannelArrayM = %@", self.myChannelArrayM);
+//        [self.recommandChannelArrayM addObjectsFromArray:recommandChannels];
+//        NSLog(@"2 - self.myChannelArrayM = %@", self.myChannelArrayM);
         self = [[QQChannelListView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20)];
         [self setupUIWithMyChannels:myChannels recommandChannels:recommandChannels];
     }
-//    [self initWithMyChannels:myChannels recommandChannels:recommandChannels];
     return self;
 }
 
 #pragma mark - SetupUI
 - (void)setupUIWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels {
+
+    NSLog(@"3 - self.myChannelArrayM = %@", self.myChannelArrayM);
+    
+    self.myChannelArrayM = myChannels.mutableCopy;
+    [self.recommandChannelArrayM addObjectsFromArray:recommandChannels];
     
     [self addSubview:self.closeButton];
     [self addSubview:self.carve];
@@ -57,7 +70,13 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 10;
+    if (section == 0) {
+        NSLog(@"%ld", self.myChannelArrayM.count);
+        return self.myChannelArrayM.count;
+    } else {
+        NSLog(@"%ld", self.recommandChannelArrayM.count);
+        return self.recommandChannelArrayM.count;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,6 +119,20 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
         _collectionView.backgroundColor = self.backgroundColor;
     }
     return _collectionView;
+}
+
+- (NSMutableArray *)myChannelArrayM {
+    if (_myChannelArrayM == nil) {
+        _myChannelArrayM = [NSMutableArray array];
+    }
+    return _myChannelArrayM;
+}
+
+- (NSMutableArray *)recommandChannelArrayM {
+    if (_recommandChannelArrayM == nil) {
+        _recommandChannelArrayM = [NSMutableArray array];
+    }
+    return _recommandChannelArrayM;
 }
 
 @end
