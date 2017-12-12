@@ -13,6 +13,8 @@
 		0492C2A91FDF87DA00997023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0492C2A81FDF87DA00997023 /* Assets.xcassets */; };
 		0492C2AC1FDF87DA00997023 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0492C2AA1FDF87DA00997023 /* LaunchScreen.storyboard */; };
 		0492C2AF1FDF87DA00997023 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2AE1FDF87DA00997023 /* main.m */; };
+		0492C2B81FDFA9A600997023 /* QQChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */; };
+		0492C2BB1FDFB5EE00997023 /* QQChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2BA1FDFB5EE00997023 /* QQChannel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		0492C2AB1FDF87DA00997023 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0492C2AD1FDF87DA00997023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0492C2AE1FDF87DA00997023 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0492C2B61FDFA9A600997023 /* QQChannelListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannelListViewController.h; sourceTree = "<group>"; };
+		0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListViewController.m; sourceTree = "<group>"; };
+		0492C2B91FDFB5EE00997023 /* QQChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannel.h; sourceTree = "<group>"; };
+		0492C2BA1FDFB5EE00997023 /* QQChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 				0492C2A01FDF87DA00997023 /* AppDelegate.m */,
 				0492C2A21FDF87DA00997023 /* ViewController.h */,
 				0492C2A31FDF87DA00997023 /* ViewController.m */,
+				0492C2B51FDFA98800997023 /* QQChannelList */,
 				0492C2A51FDF87DA00997023 /* Main.storyboard */,
 				0492C2A81FDF87DA00997023 /* Assets.xcassets */,
 				0492C2AA1FDF87DA00997023 /* LaunchScreen.storyboard */,
@@ -69,6 +76,17 @@
 				0492C2AE1FDF87DA00997023 /* main.m */,
 			);
 			path = QQChannelListViewController;
+			sourceTree = "<group>";
+		};
+		0492C2B51FDFA98800997023 /* QQChannelList */ = {
+			isa = PBXGroup;
+			children = (
+				0492C2B61FDFA9A600997023 /* QQChannelListViewController.h */,
+				0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */,
+				0492C2B91FDFB5EE00997023 /* QQChannel.h */,
+				0492C2BA1FDFB5EE00997023 /* QQChannel.m */,
+			);
+			path = QQChannelList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +115,7 @@
 		0492C2941FDF87DA00997023 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = QQ;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Mac;
 				TargetAttributes = {
@@ -142,8 +161,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0492C2BB1FDFB5EE00997023 /* QQChannel.m in Sources */,
 				0492C2A41FDF87DA00997023 /* ViewController.m in Sources */,
 				0492C2AF1FDF87DA00997023 /* main.m in Sources */,
+				0492C2B81FDFA9A600997023 /* QQChannelListViewController.m in Sources */,
 				0492C2A11FDF87DA00997023 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

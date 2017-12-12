@@ -19,13 +19,12 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"标题";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popToChannelListViewController)];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)popToChannelListViewController {
+    
+    NSLog(@"aaa");
 }
-
 
 @end
