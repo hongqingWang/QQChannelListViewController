@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "QQChannelListViewController.h"
+#import "QQChannelListView.h"
 
 @interface ViewController ()
+
+/// ChannelListView
+@property (nonatomic, strong) QQChannelListView *channelListView;
 
 @end
 
@@ -19,12 +24,25 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"标题";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popToChannelListViewController)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(presentChannelListView)];
+    [self.navigationController.view addSubview:self.channelListView];
 }
 
-- (void)popToChannelListViewController {
+#pragma mark - Event Response
+- (void)presentChannelListView {
     
-    NSLog(@"aaa");
+    [UIView animateWithDuration:0.25 animations:^{
+        self.channelListView.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20);
+    }];
+}
+
+#pragma mark - Getters and Setters
+- (QQChannelListView *)channelListView {
+    if (_channelListView == nil) {
+        _channelListView = [[QQChannelListView alloc] init];
+        _channelListView.backgroundColor = [UIColor whiteColor];
+    }
+    return _channelListView;
 }
 
 @end
