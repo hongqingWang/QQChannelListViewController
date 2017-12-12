@@ -86,13 +86,13 @@
 		0492C2B51FDFA98800997023 /* QQChannelList */ = {
 			isa = PBXGroup;
 			children = (
+				0492C2C11FDFC72C00997023 /* QQChannelListView.h */,
+				0492C2C21FDFC72C00997023 /* QQChannelListView.m */,
 				0492C2B61FDFA9A600997023 /* QQChannelListViewController.h */,
 				0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */,
 				0492C2B91FDFB5EE00997023 /* QQChannel.h */,
 				0492C2BA1FDFB5EE00997023 /* QQChannel.m */,
 				0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */,
-				0492C2C11FDFC72C00997023 /* QQChannelListView.h */,
-				0492C2C21FDFC72C00997023 /* QQChannelListView.m */,
 			);
 			path = QQChannelList;
 			sourceTree = "<group>";
