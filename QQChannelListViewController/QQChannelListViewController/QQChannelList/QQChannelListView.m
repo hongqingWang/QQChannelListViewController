@@ -23,16 +23,19 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
 
 @implementation QQChannelListView
 
-- (instancetype)init {
+- (instancetype)initWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels {
+    
     if (self = [super init]) {
+        
         self = [[QQChannelListView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20)];
-        [self setupUI];
+        [self setupUIWithMyChannels:myChannels recommandChannels:recommandChannels];
     }
+//    [self initWithMyChannels:myChannels recommandChannels:recommandChannels];
     return self;
 }
 
 #pragma mark - SetupUI
-- (void)setupUI {
+- (void)setupUIWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels {
     
     [self addSubview:self.closeButton];
     [self addSubview:self.carve];

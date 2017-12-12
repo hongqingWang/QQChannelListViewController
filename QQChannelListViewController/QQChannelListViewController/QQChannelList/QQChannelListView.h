@@ -10,4 +10,6 @@
 
 @interface QQChannelListView : UIView
 
+- (instancetype)initWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels;
+
 @end
