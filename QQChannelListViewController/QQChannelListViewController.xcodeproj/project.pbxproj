@@ -20,6 +20,7 @@
 		04ACD6321FE0D9500028D439 /* QQChannelListViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD6311FE0D9500028D439 /* QQChannelListViewFlowLayout.m */; };
 		04ACD6351FE0F7D50028D439 /* QQChannelListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD6341FE0F7D50028D439 /* QQChannelListHeaderView.m */; };
 		04ACD6381FE114560028D439 /* QQChannelListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD6371FE114560028D439 /* QQChannelListCell.m */; };
+		65EFBCF95B6F62EB09536970 /* libPods-QQChannelListViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C4E0BE1DB4E76AFD17F839 /* libPods-QQChannelListViewController.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,9 @@
 		04ACD6341FE0F7D50028D439 /* QQChannelListHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListHeaderView.m; sourceTree = "<group>"; };
 		04ACD6361FE114560028D439 /* QQChannelListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannelListCell.h; sourceTree = "<group>"; };
 		04ACD6371FE114560028D439 /* QQChannelListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListCell.m; sourceTree = "<group>"; };
+		13C4E0BE1DB4E76AFD17F839 /* libPods-QQChannelListViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QQChannelListViewController.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEE4CB7163A082F1CBB3506B /* Pods-QQChannelListViewController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QQChannelListViewController.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QQChannelListViewController/Pods-QQChannelListViewController.debug.xcconfig"; sourceTree = "<group>"; };
+		E0A4644F581E81BBD3BDBEFD /* Pods-QQChannelListViewController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QQChannelListViewController.release.xcconfig"; path = "Pods/Target Support Files/Pods-QQChannelListViewController/Pods-QQChannelListViewController.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65EFBCF95B6F62EB09536970 /* libPods-QQChannelListViewController.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +69,8 @@
 			children = (
 				0492C29E1FDF87DA00997023 /* QQChannelListViewController */,
 				0492C29D1FDF87DA00997023 /* Products */,
+				44904E2912BF4B6DF1598CD9 /* Pods */,
+				F4C8FC8F93ED096FAC11BF41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +119,23 @@
 			path = QQChannelList;
 			sourceTree = "<group>";
 		};
+		44904E2912BF4B6DF1598CD9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DEE4CB7163A082F1CBB3506B /* Pods-QQChannelListViewController.debug.xcconfig */,
+				E0A4644F581E81BBD3BDBEFD /* Pods-QQChannelListViewController.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F4C8FC8F93ED096FAC11BF41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13C4E0BE1DB4E76AFD17F839 /* libPods-QQChannelListViewController.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +143,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0492C2B21FDF87DA00997023 /* Build configuration list for PBXNativeTarget "QQChannelListViewController" */;
 			buildPhases = (
+				FF51708C835DA14F5041F014 /* [CP] Check Pods Manifest.lock */,
 				0492C2981FDF87DA00997023 /* Sources */,
 				0492C2991FDF87DA00997023 /* Frameworks */,
 				0492C29A1FDF87DA00997023 /* Resources */,
+				6235339DC47A45E0197C82EF /* [CP] Embed Pods Frameworks */,
+				4C7002047E25A9BD0505AFA6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,6 +206,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C7002047E25A9BD0505AFA6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QQChannelListViewController/Pods-QQChannelListViewController-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6235339DC47A45E0197C82EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QQChannelListViewController/Pods-QQChannelListViewController-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF51708C835DA14F5041F014 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QQChannelListViewController-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0492C2981FDF87DA00997023 /* Sources */ = {
@@ -325,6 +403,7 @@
 		};
 		0492C2B31FDF87DA00997023 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEE4CB7163A082F1CBB3506B /* Pods-QQChannelListViewController.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -339,6 +418,7 @@
 		};
 		0492C2B41FDF87DA00997023 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0A4644F581E81BBD3BDBEFD /* Pods-QQChannelListViewController.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
