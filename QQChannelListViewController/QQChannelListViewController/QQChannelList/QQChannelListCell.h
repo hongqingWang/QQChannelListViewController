@@ -1,5 +1,5 @@
 //
-//  QQChannelListHeaderView.h
+//  QQChannelListCell.h
 //  QQChannelListViewController
 //
 //  Created by Mac on 13/12/2017.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QQChannelListHeaderView : UICollectionReusableView
+@interface QQChannelListCell : UICollectionViewCell
 
 @end

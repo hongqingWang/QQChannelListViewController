@@ -8,6 +8,7 @@
 
 #import "QQChannelListView.h"
 #import "QQChannelListViewFlowLayout.h"
+#import "QQChannelListCell.h"
 #import "QQChannelListHeaderView.h"
 
 static NSString *const qqChannelListCellIdentifier = @"qqChannelListCellIdentifier";
@@ -82,16 +83,13 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
-//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier forIndexPath:indexPath];
-    QQChannelListHeaderView *headerView = [QQChannelListHeaderView qq_channelListHeaderViewWithCollectionView:collectionView reuseIdentifier:qqChannelListHeaderViewIdentifier atIndexPath:indexPath];
-//    headerView.backgroundColor = [UIColor yellowColor];
+    QQChannelListHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier forIndexPath:indexPath];
     
     return headerView;
 }
@@ -126,7 +124,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:qqChannelListCellIdentifier];
+        [_collectionView registerClass:[QQChannelListCell class] forCellWithReuseIdentifier:qqChannelListCellIdentifier];
         [_collectionView registerClass:[QQChannelListHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier];
         _collectionView.backgroundColor = self.backgroundColor;
     }

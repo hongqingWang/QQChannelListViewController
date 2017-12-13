@@ -19,6 +19,7 @@
 		0492C2C31FDFC72C00997023 /* QQChannelListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2C21FDFC72C00997023 /* QQChannelListView.m */; };
 		04ACD6321FE0D9500028D439 /* QQChannelListViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD6311FE0D9500028D439 /* QQChannelListViewFlowLayout.m */; };
 		04ACD6351FE0F7D50028D439 /* QQChannelListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD6341FE0F7D50028D439 /* QQChannelListHeaderView.m */; };
+		04ACD6381FE114560028D439 /* QQChannelListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD6371FE114560028D439 /* QQChannelListCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		04ACD6311FE0D9500028D439 /* QQChannelListViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListViewFlowLayout.m; sourceTree = "<group>"; };
 		04ACD6331FE0F7D50028D439 /* QQChannelListHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannelListHeaderView.h; sourceTree = "<group>"; };
 		04ACD6341FE0F7D50028D439 /* QQChannelListHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListHeaderView.m; sourceTree = "<group>"; };
+		04ACD6361FE114560028D439 /* QQChannelListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannelListCell.h; sourceTree = "<group>"; };
+		04ACD6371FE114560028D439 /* QQChannelListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 				0492C2C21FDFC72C00997023 /* QQChannelListView.m */,
 				04ACD6301FE0D9500028D439 /* QQChannelListViewFlowLayout.h */,
 				04ACD6311FE0D9500028D439 /* QQChannelListViewFlowLayout.m */,
+				04ACD6361FE114560028D439 /* QQChannelListCell.h */,
+				04ACD6371FE114560028D439 /* QQChannelListCell.m */,
 				04ACD6331FE0F7D50028D439 /* QQChannelListHeaderView.h */,
 				04ACD6341FE0F7D50028D439 /* QQChannelListHeaderView.m */,
 				0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */,
@@ -187,6 +192,7 @@
 				0492C2AF1FDF87DA00997023 /* main.m in Sources */,
 				0492C2B81FDFA9A600997023 /* QQChannelListViewController.m in Sources */,
 				0492C2A11FDF87DA00997023 /* AppDelegate.m in Sources */,
+				04ACD6381FE114560028D439 /* QQChannelListCell.m in Sources */,
 				04ACD6351FE0F7D50028D439 /* QQChannelListHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
