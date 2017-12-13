@@ -20,6 +20,7 @@ static CGFloat const qqChannelListHeaderViewHeight = 40;
     self.itemSize = CGSizeMake(QQ_CHANNEL_LIST_ITEM_WIDTH, QQ_CHANNEL_LIST_ITEM_WIDTH * 0.5);
     self.minimumInteritemSpacing = 5;
     self.minimumLineSpacing = 5;
+    // 设置`SectionHeader`和`SectionCell`之间的距离
     self.sectionInset = UIEdgeInsetsMake(10, 20, 10, 20);
 }
 

@@ -90,7 +90,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier forIndexPath:indexPath];
     
-    headerView.backgroundColor = [UIColor redColor];
+    headerView.backgroundColor = [UIColor yellowColor];
     
     return headerView;
 }
