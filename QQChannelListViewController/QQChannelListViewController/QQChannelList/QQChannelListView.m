@@ -95,7 +95,10 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 }
 
 #pragma mark - UICollectionViewDelegate
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"%ld - %ld", indexPath.section, indexPath.item);
+}
 
 #pragma mark - Getters and Setters
 - (UIButton *)closeButton {

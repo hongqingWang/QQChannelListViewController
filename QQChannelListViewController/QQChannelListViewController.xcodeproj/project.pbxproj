@@ -110,11 +110,11 @@
 				04ACD6371FE114560028D439 /* QQChannelListCell.m */,
 				04ACD6331FE0F7D50028D439 /* QQChannelListHeaderView.h */,
 				04ACD6341FE0F7D50028D439 /* QQChannelListHeaderView.m */,
+				0492C2B91FDFB5EE00997023 /* QQChannel.h */,
+				0492C2BA1FDFB5EE00997023 /* QQChannel.m */,
 				0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */,
 				0492C2B61FDFA9A600997023 /* QQChannelListViewController.h */,
 				0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */,
-				0492C2B91FDFB5EE00997023 /* QQChannel.h */,
-				0492C2BA1FDFB5EE00997023 /* QQChannel.m */,
 			);
 			path = QQChannelList;
 			sourceTree = "<group>";

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QQChannel.h"
 
 @interface QQChannelListCell : UICollectionViewCell
 
 /// DeleteIamgeView
 @property (nonatomic, strong) UIImageView *deleteImageView;
+/// QQChannel
+@property (nonatomic, strong) QQChannel *channel;
 
 @end

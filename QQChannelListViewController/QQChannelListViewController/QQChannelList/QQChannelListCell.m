@@ -10,7 +10,7 @@
 #import <Masonry.h>
 
 #define QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR        [UIColor colorWithRed:243 / 255.0 green:243 / 255.0 blue:243 / 255.0 alpha:1.0]
-#define QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR      [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1.0]
+//#define QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR      [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1.0]
 
 @interface QQChannelListCell ()
 
@@ -27,6 +27,8 @@
     if (self) {
         
         self.backgroundColor = QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = YES;
         [self setupUI];
     }
     return self;
@@ -37,8 +39,8 @@
     
     [self addSubview:self.titleLabel];
     [self addSubview:self.deleteImageView];
-    
-    self.titleLabel.frame = CGRectMake(self.bounds.size.width / 4, self.bounds.size.height / 4, self.bounds.size.width / 2, self.bounds.size.height / 2);
+
+    self.titleLabel.frame = self.bounds;
     self.deleteImageView.frame = CGRectMake(self.bounds.size.width - 12, -5, 15, 15);
 }
 
@@ -48,7 +50,8 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"推荐";
         _titleLabel.textColor = [UIColor darkGrayColor];
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
 }
