@@ -26,6 +26,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 @property (nonatomic, strong) NSMutableArray *myChannelArrayM;
 /// RecommandChannels
 @property (nonatomic, strong) NSMutableArray *recommandChannelArrayM;
+/// isEdit
+@property (nonatomic, assign) BOOL isEdit;
 
 @end
 
@@ -35,11 +37,6 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     
     if (self = [super init]) {
         
-//        NSLog(@"myChannels = %@", myChannels);
-//        self.myChannelArrayM = myChannels.mutableCopy;
-//        NSLog(@"1 - self.myChannelArrayM = %@", self.myChannelArrayM);
-//        [self.recommandChannelArrayM addObjectsFromArray:recommandChannels];
-//        NSLog(@"2 - self.myChannelArrayM = %@", self.myChannelArrayM);
         self = [[QQChannelListView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20)];
         [self setupUIWithMyChannels:myChannels recommandChannels:recommandChannels];
     }
@@ -51,6 +48,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 
     [self.myChannelArrayM addObjectsFromArray:myChannels];
     [self.recommandChannelArrayM addObjectsFromArray:recommandChannels];
+    // 默认不可编辑
+    self.isEdit = NO;
     
     [self addSubview:self.closeButton];
     [self addSubview:self.carve];
@@ -72,18 +71,13 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    if (section == 0) {
-        NSLog(@"%ld", self.myChannelArrayM.count);
-        return self.myChannelArrayM.count;
-    } else {
-        NSLog(@"%ld", self.recommandChannelArrayM.count);
-        return self.recommandChannelArrayM.count;
-    }
+    return section == 0 ? self.myChannelArrayM.count : self.recommandChannelArrayM.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
+    
     return cell;
 }
 
