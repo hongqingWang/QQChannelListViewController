@@ -10,4 +10,7 @@
 
 @interface QQChannelListCell : UICollectionViewCell
 
+/// DeleteIamgeView
+@property (nonatomic, strong) UIImageView *deleteImageView;
+
 @end
