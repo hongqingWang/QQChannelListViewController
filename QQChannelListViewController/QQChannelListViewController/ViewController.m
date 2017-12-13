@@ -39,7 +39,7 @@
 #pragma mark - Getters and Setters
 - (QQChannelListView *)channelListView {
     if (_channelListView == nil) {
-        _channelListView = [[QQChannelListView alloc] initWithMyChannels:@[@"aaa", @"bbb", @"ccc"] recommandChannels:@[@"ccc", @"ddd"]];
+        _channelListView = [[QQChannelListView alloc] initWithMyChannels:@[@"aaa", @"bbb", @"ccc", @"ddd"] recommandChannels:@[@"ccc", @"ddd"]];
         _channelListView.backgroundColor = [UIColor whiteColor];
     }
     return _channelListView;

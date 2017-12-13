@@ -17,6 +17,7 @@
 		0492C2BB1FDFB5EE00997023 /* QQChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2BA1FDFB5EE00997023 /* QQChannel.m */; };
 		0492C2C01FDFC3B600997023 /* QQChannelList.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */; };
 		0492C2C31FDFC72C00997023 /* QQChannelListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2C21FDFC72C00997023 /* QQChannelListView.m */; };
+		04ACD6321FE0D9500028D439 /* QQChannelListViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD6311FE0D9500028D439 /* QQChannelListViewFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QQChannelList.xcassets; sourceTree = "<group>"; };
 		0492C2C11FDFC72C00997023 /* QQChannelListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannelListView.h; sourceTree = "<group>"; };
 		0492C2C21FDFC72C00997023 /* QQChannelListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListView.m; sourceTree = "<group>"; };
+		04ACD6301FE0D9500028D439 /* QQChannelListViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannelListViewFlowLayout.h; sourceTree = "<group>"; };
+		04ACD6311FE0D9500028D439 /* QQChannelListViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListViewFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 			children = (
 				0492C2C11FDFC72C00997023 /* QQChannelListView.h */,
 				0492C2C21FDFC72C00997023 /* QQChannelListView.m */,
+				04ACD6301FE0D9500028D439 /* QQChannelListViewFlowLayout.h */,
+				04ACD6311FE0D9500028D439 /* QQChannelListViewFlowLayout.m */,
 				0492C2B61FDFA9A600997023 /* QQChannelListViewController.h */,
 				0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */,
 				0492C2B91FDFB5EE00997023 /* QQChannel.h */,
@@ -172,6 +177,7 @@
 			files = (
 				0492C2C31FDFC72C00997023 /* QQChannelListView.m in Sources */,
 				0492C2BB1FDFB5EE00997023 /* QQChannel.m in Sources */,
+				04ACD6321FE0D9500028D439 /* QQChannelListViewFlowLayout.m in Sources */,
 				0492C2A41FDF87DA00997023 /* ViewController.m in Sources */,
 				0492C2AF1FDF87DA00997023 /* main.m in Sources */,
 				0492C2B81FDFA9A600997023 /* QQChannelListViewController.m in Sources */,

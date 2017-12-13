@@ -7,8 +7,10 @@
 //
 
 #import "QQChannelListView.h"
+#import "QQChannelListViewFlowLayout.h"
 
-static NSString *const qqChannelListCellID = @"qqChannelListCellID";
+static NSString *const qqChannelListCellIdentifier = @"qqChannelListCellIdentifier";
+static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeaderViewIdentifier";
 
 @interface QQChannelListView ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -45,9 +47,7 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
 #pragma mark - SetupUI
 - (void)setupUIWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels {
 
-    NSLog(@"3 - self.myChannelArrayM = %@", self.myChannelArrayM);
-    
-    self.myChannelArrayM = myChannels.mutableCopy;
+    [self.myChannelArrayM addObjectsFromArray:myChannels];
     [self.recommandChannelArrayM addObjectsFromArray:recommandChannels];
     
     [self addSubview:self.closeButton];
@@ -81,11 +81,21 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellID forIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
     cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier forIndexPath:indexPath];
+    
+    headerView.backgroundColor = [UIColor redColor];
+    
+    return headerView;
+}
+
+#pragma mark - UICollectionViewDelegate
 
 
 #pragma mark - Getters and Setters
@@ -111,11 +121,13 @@ static NSString *const qqChannelListCellID = @"qqChannelListCellID";
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
         CGRect frame = CGRectMake(0, 44, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        QQChannelListViewFlowLayout *flowLayout = [[QQChannelListViewFlowLayout alloc] init];
+        
         _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:qqChannelListCellID];
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:qqChannelListCellIdentifier];
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier];
         _collectionView.backgroundColor = self.backgroundColor;
     }
     return _collectionView;
