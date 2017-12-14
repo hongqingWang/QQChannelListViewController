@@ -12,13 +12,6 @@ static CGFloat const margin = 10;
 
 @interface QQChannelListHeaderView ()
 
-/// Title
-@property (nonatomic, strong) UILabel *titleLabel;
-/// SubTitle
-@property (nonatomic, strong) UILabel *subTitleLabel;
-/// Button
-@property (nonatomic, strong) UIButton *rightButton;
-
 @end
 
 @implementation QQChannelListHeaderView
@@ -45,9 +38,13 @@ static CGFloat const margin = 10;
 }
 
 #pragma mark - Event Response
-- (void)edit {
+- (void)edit:(UIButton *)button {
     
+    if ([self.delegate respondsToSelector:@selector(channelListHeaderView:didClickEditButton:)]) {
+        [self.delegate channelListHeaderView:self didClickEditButton:button];
+    }
     self.rightButton.selected = !self.rightButton.selected;
+    
 }
 
 #pragma mark - Getters and Setters
@@ -80,7 +77,8 @@ static CGFloat const margin = 10;
         _rightButton.layer.borderWidth = 0.5;
         _rightButton.layer.cornerRadius = 25 / 2;
         _rightButton.layer.masksToBounds = YES;
-        [_rightButton addTarget:self action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
+        [_rightButton addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
+        _rightButton.hidden = YES;
     }
     return _rightButton;
 }

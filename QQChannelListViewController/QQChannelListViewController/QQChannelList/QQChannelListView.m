@@ -14,7 +14,7 @@
 static NSString *const qqChannelListCellIdentifier = @"qqChannelListCellIdentifier";
 static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeaderViewIdentifier";
 
-@interface QQChannelListView ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface QQChannelListView ()<UICollectionViewDataSource, UICollectionViewDelegate, QQChannelListHeaderViewDelegate>
 
 /// closeButton
 @property (nonatomic, strong) UIButton *closeButton;
@@ -28,6 +28,10 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 @property (nonatomic, strong) NSMutableArray *recommandChannelArrayM;
 /// isEdit
 @property (nonatomic, assign) BOOL isEdit;
+/// HeaderTitle
+@property (nonatomic, strong) NSArray *headerTitles;
+/// HeaderSubTitle
+@property (nonatomic, strong) NSArray *headerSubTitles;
 
 @end
 
@@ -64,6 +68,16 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     }];
 }
 
+#pragma mark - QQChannelListHeaderViewDelegate
+- (void)channelListHeaderView:(QQChannelListHeaderView *)channelListHeaderView didClickEditButton:(UIButton *)button {
+    
+    self.isEdit = !self.isEdit;
+    
+//    NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:0];
+//    [self.collectionView reloadSections:indexSet];
+        [self.collectionView reloadData];
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 2;
@@ -77,7 +91,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
-    
+    cell.deleteImageView.hidden = self.isEdit ? NO : YES;
     return cell;
 }
 
@@ -85,13 +99,20 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     
     QQChannelListHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier forIndexPath:indexPath];
     
+    headerView.titleLabel.text = self.headerTitles[indexPath.section];
+    headerView.subTitleLabel.text = self.isEdit ? self.headerSubTitles[0][indexPath.section] : self.headerSubTitles[1][indexPath.section];
+    headerView.rightButton.hidden = (indexPath.section == 0) ? NO : YES;
+    headerView.rightButton.selected = self.isEdit;
+    
+    headerView.delegate = self;
+    
     return headerView;
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"%ld - %ld", indexPath.section, indexPath.item);
+    
 }
 
 #pragma mark - Getters and Setters
@@ -140,6 +161,23 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         _recommandChannelArrayM = [NSMutableArray array];
     }
     return _recommandChannelArrayM;
+}
+
+- (NSArray *)headerTitles {
+    if (_headerTitles == nil) {
+        _headerTitles = @[@"我的频道", @"频道推荐"];
+    }
+    return _headerTitles;
+}
+
+- (NSArray *)headerSubTitles {
+    if (_headerSubTitles == nil) {
+        _headerSubTitles = @[
+                             @[@"拖拽可以排序", @"点击添加频道"],
+                             @[@"点击进入频道", @"点击添加频道"]
+                             ];
+    }
+    return _headerSubTitles;
 }
 
 @end

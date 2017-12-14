@@ -25,10 +25,7 @@
     
     self = [super initWithFrame:frame];
     if (self) {
-        
-        self.backgroundColor = QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
-        self.layer.cornerRadius = 5;
-        self.layer.masksToBounds = YES;
+
         [self setupUI];
     }
     return self;
@@ -52,6 +49,9 @@
         _titleLabel.textColor = [UIColor darkGrayColor];
         _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.backgroundColor = QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
+        _titleLabel.layer.cornerRadius = 5;
+        _titleLabel.layer.masksToBounds = YES;
     }
     return _titleLabel;
 }
