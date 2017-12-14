@@ -134,14 +134,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 #pragma mark - QQChannelListHeaderViewDelegate
 - (void)channelListHeaderView:(QQChannelListHeaderView *)channelListHeaderView didClickEditButton:(UIButton *)button {
     
-    
-    
-    
     self.isEdit = !self.isEdit;
-    
-//    NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:0];
-//    [self.collectionView reloadSections:indexSet];
-        [self.collectionView reloadData];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -157,9 +151,9 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
-    cell.deleteImageView.hidden = (self.isEdit && indexPath.section == 0) ? NO : YES;
     
     cell.channel = (indexPath.section == 0) ? self.myChannelArrayM[indexPath.row] : self.recommandChannelArrayM[indexPath.row];
+    cell.deleteImageView.hidden = (self.isEdit && cell.channel.editable) ? NO : YES;
     
     return cell;
 }
@@ -193,9 +187,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         
         QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
         cell.channel.channelType = RecommandChannel;
-        
+//        cell.channel.editable = NO;
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-        
         [self.myChannelArrayM removeObjectAtIndex:indexPath.item];
         [self.recommandChannelArrayM addObject:cell.channel];
         NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:self.recommandChannelArrayM.count - 1 inSection:1];
@@ -207,6 +200,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         
         QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
         cell.channel.channelType = MyChannel;
+//        cell.channel.editable = YES;
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [self.recommandChannelArrayM removeObjectAtIndex:indexPath.item];
         [self.myChannelArrayM addObject:cell.channel];

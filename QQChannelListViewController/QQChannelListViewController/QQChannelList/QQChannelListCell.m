@@ -32,7 +32,7 @@
         if ([channel.title containsString:@"+"]) {
             channel.title = [channel.title substringFromIndex:1];
         }
-        
+        channel.editable = YES;
         self.titleLabel.backgroundColor = QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
         
     } else if (channel.channelType == RecommandChannel) {
@@ -40,6 +40,7 @@
         if (![channel.title containsString:@"+"]) {
             channel.title = [@"+" stringByAppendingString:channel.title];
         }
+        channel.editable = NO;
         self.deleteImageView.hidden = YES;
         self.titleLabel.textColor = [UIColor darkGrayColor];
         self.titleLabel.backgroundColor = QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
