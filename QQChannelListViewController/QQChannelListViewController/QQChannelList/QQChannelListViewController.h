@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^selectCallBack)(NSArray *myChannels, NSArray *recommandChannels);
+typedef void (^SelectCallBack)(NSArray *myChannels, NSArray *recommandChannels, NSInteger selectIndex);
 
 @interface QQChannelListViewController : UIViewController
+
+/// SelectCallBack
+@property (nonatomic, copy) SelectCallBack selectCallBack;
 
 @end

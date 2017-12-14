@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^SelectCallBack)(NSArray *myChannels, NSArray *recommandChannels, NSInteger selectIndex);
+
 @interface QQChannelListView : UIView
 
-- (instancetype)initWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels;
+/// SelectCallBack
+@property (nonatomic, copy) SelectCallBack selectCallBack;
+
+- (instancetype)initWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels selectIndex:(NSInteger)selectIndex;
 
 @end

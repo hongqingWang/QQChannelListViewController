@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "QQChannelListViewController.h"
 #import "QQChannelListView.h"
+#import "QQChannel.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,8 @@
 @property (nonatomic, strong) NSMutableArray *myChannelArrayM;
 /// RecommandChannels
 @property (nonatomic, strong) NSMutableArray *recommandChannelArrayM;
+/// selectIndex
+@property (nonatomic, assign) NSInteger selectIndex;
 
 @end
 
@@ -44,7 +47,20 @@
 //                                   @"政务", @"辟谣", @"火山直播", @"中国新唱将",
                                    @"彩票", @"快乐男生", @"正能量", nil];
     
-//    [self.navigationController.view addSubview:self.channelListView];
+    self.selectIndex = 3;
+    
+    self.channelListView.selectCallBack = ^(NSArray *myChannels, NSArray *recommandChannels, NSInteger selectIndex) {
+        
+        for (QQChannel *channel in myChannels) {
+            NSLog(@"myChannels = %@", channel.title);
+        }
+        
+        for (QQChannel *channel in recommandChannels) {
+            NSLog(@"recommandChannels = %@", channel.title);
+        }
+        
+        NSLog(@"%ld", selectIndex);
+    };
 }
 
 #pragma mark - Event Response
@@ -60,8 +76,9 @@
 #pragma mark - Getters and Setters
 - (QQChannelListView *)channelListView {
     if (_channelListView == nil) {
-        _channelListView = [[QQChannelListView alloc] initWithMyChannels:self.myChannelArrayM recommandChannels:self.recommandChannelArrayM];
+        _channelListView = [[QQChannelListView alloc] initWithMyChannels:self.myChannelArrayM recommandChannels:self.recommandChannelArrayM selectIndex:self.selectIndex];
         _channelListView.backgroundColor = [UIColor whiteColor];
+        
     }
     return _channelListView;
 }

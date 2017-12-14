@@ -26,6 +26,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 @property (nonatomic, strong) NSMutableArray *myChannelArrayM;
 /// RecommandChannels
 @property (nonatomic, strong) NSMutableArray *recommandChannelArrayM;
+/// selectIndex
+@property (nonatomic, assign) NSInteger selectIndex;
 /// isEdit
 @property (nonatomic, assign) BOOL isEdit;
 /// HeaderTitle
@@ -37,18 +39,18 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 
 @implementation QQChannelListView
 
-- (instancetype)initWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels {
+- (instancetype)initWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels selectIndex:(NSInteger)selectIndex {
     
     if (self = [super init]) {
         
         self = [[QQChannelListView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20)];
-        [self setupUIWithMyChannels:myChannels recommandChannels:recommandChannels];
+        [self setupUIWithMyChannels:myChannels recommandChannels:recommandChannels selectIndex:selectIndex];
     }
     return self;
 }
 
 #pragma mark - SetupUI
-- (void)setupUIWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels {
+- (void)setupUIWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels selectIndex:(NSInteger)selectIndex {
     
     for (NSString *title in myChannels) {
         
@@ -73,7 +75,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         channel.channelType = RecommandChannel;
         [self.recommandChannelArrayM addObject:channel];
     }
-    
+    self.selectIndex = selectIndex;
     // 默认不可编辑
     self.isEdit = NO;
     
@@ -85,8 +87,15 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 #pragma mark - Event Response
 - (void)close {
     
+    if (self.isEdit) {
+        self.isEdit = !self.isEdit;
+    }
+    [self.collectionView reloadData];
     [UIView animateWithDuration:0.25 animations:^{
         self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20);
+    } completion:^(BOOL finished) {
+        
+        self.selectCallBack(self.myChannelArrayM, self.recommandChannelArrayM, self.selectIndex);
     }];
 }
 
@@ -173,15 +182,23 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-
     
     QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
-
     return (indexPath.section == 0 && !cell.channel.resident) ? YES : NO;
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0 && !self.isEdit) {
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 20);
+        } completion:^(BOOL finished) {
+            
+            self.selectCallBack(self.myChannelArrayM, self.recommandChannelArrayM, indexPath.row);
+        }];
+    }
     
     if (indexPath.section == 0 && self.isEdit) {
         
