@@ -96,6 +96,9 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
     cell.deleteImageView.hidden = (self.isEdit && indexPath.section == 0) ? NO : YES;
     cell.titleLabel.backgroundColor = (indexPath.section == 0) ? QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR : QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
+    
+    cell.titleLabel.text = (indexPath.section == 0) ? self.myChannelArrayM[indexPath.row] : self.recommandChannelArrayM[indexPath.row];
+    
     return cell;
 }
 
