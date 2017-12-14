@@ -14,6 +14,9 @@
 static NSString *const qqChannelListCellIdentifier = @"qqChannelListCellIdentifier";
 static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeaderViewIdentifier";
 
+#define QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR        [UIColor colorWithRed:243 / 255.0 green:243 / 255.0 blue:243 / 255.0 alpha:1.0]
+#define QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR      [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1.0]
+
 @interface QQChannelListView ()<UICollectionViewDataSource, UICollectionViewDelegate, QQChannelListHeaderViewDelegate>
 
 /// closeButton
@@ -91,7 +94,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
-    cell.deleteImageView.hidden = self.isEdit ? NO : YES;
+    cell.deleteImageView.hidden = (self.isEdit && indexPath.section == 0) ? NO : YES;
+    cell.titleLabel.backgroundColor = (indexPath.section == 0) ? QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR : QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
     return cell;
 }
 
@@ -112,7 +116,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    
+    NSLog(@"%ld", indexPath.row);
 }
 
 #pragma mark - Getters and Setters

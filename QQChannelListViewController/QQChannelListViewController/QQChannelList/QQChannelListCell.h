@@ -15,5 +15,7 @@
 @property (nonatomic, strong) UIImageView *deleteImageView;
 /// QQChannel
 @property (nonatomic, strong) QQChannel *channel;
+/// Title
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
