@@ -14,9 +14,6 @@
 static NSString *const qqChannelListCellIdentifier = @"qqChannelListCellIdentifier";
 static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeaderViewIdentifier";
 
-#define QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR        [UIColor colorWithRed:243 / 255.0 green:243 / 255.0 blue:243 / 255.0 alpha:1.0]
-#define QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR      [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1.0]
-
 @interface QQChannelListView ()<UICollectionViewDataSource, UICollectionViewDelegate, QQChannelListHeaderViewDelegate>
 
 /// closeButton
@@ -52,9 +49,31 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 
 #pragma mark - SetupUI
 - (void)setupUIWithMyChannels:(NSArray *)myChannels recommandChannels:(NSArray *)recommandChannels {
-
-    [self.myChannelArrayM addObjectsFromArray:myChannels];
-    [self.recommandChannelArrayM addObjectsFromArray:recommandChannels];
+    
+    for (NSString *title in myChannels) {
+        
+        QQChannel *channel = [[QQChannel alloc] init];
+        channel.title = title;
+        
+        if ([title isEqualToString:@"推荐"]) {
+            channel.resident = YES;
+            channel.isSelected = YES;
+        }
+        channel.editable = YES;
+        channel.isSelected = NO;
+        channel.channelType = MyChannel;
+        [self.myChannelArrayM addObject:channel];
+    }
+    
+    for (NSString *title in recommandChannels) {
+        
+        QQChannel *channel = [[QQChannel alloc] init];
+        channel.title = title;
+        channel.editable = NO;
+        channel.channelType = RecommandChannel;
+        [self.recommandChannelArrayM addObject:channel];
+    }
+    
     // 默认不可编辑
     self.isEdit = NO;
     
@@ -71,8 +90,52 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     }];
 }
 
+/**
+ * 长按手势
+ */
+- (void)longPress:(UILongPressGestureRecognizer *)longPress {
+    
+//    if (!self.isEdit) {
+//        self.isEdit = !self.isEdit;
+////        [self.collectionView reloadData];
+////        return;
+//    }
+    
+    CGPoint point = [longPress locationInView:self.collectionView];
+    NSIndexPath *sourceIndexPath = [self.collectionView indexPathForItemAtPoint:point];
+    
+    switch (longPress.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            [self.collectionView beginInteractiveMovementForItemAtIndexPath:sourceIndexPath];
+        }
+            break;
+        case UIGestureRecognizerStateChanged:
+        {
+            [self.collectionView updateInteractiveMovementTargetPosition:point];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            [self.collectionView endInteractiveMovement];
+        }
+            break;
+        case UIGestureRecognizerStateCancelled:
+        {
+            [self.collectionView cancelInteractiveMovement];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 #pragma mark - QQChannelListHeaderViewDelegate
 - (void)channelListHeaderView:(QQChannelListHeaderView *)channelListHeaderView didClickEditButton:(UIButton *)button {
+    
+    
+    
     
     self.isEdit = !self.isEdit;
     
@@ -95,9 +158,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     
     QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
     cell.deleteImageView.hidden = (self.isEdit && indexPath.section == 0) ? NO : YES;
-    cell.titleLabel.backgroundColor = (indexPath.section == 0) ? QQ_MY_CHANNEL_LIST_CELL_BACKGROUND_COLOR : QQ_MORE_CHANNEL_LIST_CELL_BACKGROUND_COLOR;
     
-    cell.titleLabel.text = (indexPath.section == 0) ? self.myChannelArrayM[indexPath.row] : self.recommandChannelArrayM[indexPath.row];
+    cell.channel = (indexPath.section == 0) ? self.myChannelArrayM[indexPath.row] : self.recommandChannelArrayM[indexPath.row];
     
     return cell;
 }
@@ -116,10 +178,55 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     return headerView;
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    
+    QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
+
+    return (indexPath.section == 0 && !cell.channel.resident) ? YES : NO;
+}
+
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"%ld", indexPath.row);
+    if (indexPath.section == 0 && self.isEdit) {
+        
+        QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.channel.channelType = RecommandChannel;
+        
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        
+        [self.myChannelArrayM removeObjectAtIndex:indexPath.item];
+        [self.recommandChannelArrayM addObject:cell.channel];
+        NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:self.recommandChannelArrayM.count - 1 inSection:1];
+        
+        [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:destinationIndexPath];
+    }
+    
+    if (indexPath.section == 1) {
+        
+        QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.channel.channelType = MyChannel;
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [self.recommandChannelArrayM removeObjectAtIndex:indexPath.item];
+        [self.myChannelArrayM addObject:cell.channel];
+        NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:self.myChannelArrayM.count - 1 inSection:0];
+        
+        [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:destinationIndexPath];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    QQChannel *channel = self.myChannelArrayM[sourceIndexPath.item];
+    [self.myChannelArrayM removeObjectAtIndex:sourceIndexPath.item];
+    
+    if (destinationIndexPath.section == 0) {
+        [self.myChannelArrayM insertObject:channel atIndex:destinationIndexPath.item];
+    } else if (destinationIndexPath.section == 1) {
+        channel.channelType = RecommandChannel;
+        [self.recommandChannelArrayM insertObject:channel atIndex:destinationIndexPath.item];
+    }
 }
 
 #pragma mark - Getters and Setters
@@ -152,6 +259,8 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         [_collectionView registerClass:[QQChannelListCell class] forCellWithReuseIdentifier:qqChannelListCellIdentifier];
         [_collectionView registerClass:[QQChannelListHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:qqChannelListHeaderViewIdentifier];
         _collectionView.backgroundColor = self.backgroundColor;
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+        [_collectionView addGestureRecognizer:longPress];
     }
     return _collectionView;
 }
