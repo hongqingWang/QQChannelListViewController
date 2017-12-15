@@ -35,6 +35,9 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 /// HeaderSubTitle
 @property (nonatomic, strong) NSArray *headerSubTitles;
 
+/// MyChannelView
+@property (nonatomic, strong) UIView *myChannelView;
+
 @end
 
 @implementation QQChannelListView
@@ -269,6 +272,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         CGRect frame = CGRectMake(0, 44, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
         QQChannelListViewFlowLayout *flowLayout = [[QQChannelListViewFlowLayout alloc] init];
         _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
+//        [_collectionView addSubview:self.myChannelView];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         [_collectionView registerClass:[QQChannelListCell class] forCellWithReuseIdentifier:qqChannelListCellIdentifier];
@@ -309,6 +313,15 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
                              ];
     }
     return _headerSubTitles;
+}
+
+- (UIView *)myChannelView {
+    if (_myChannelView == nil) {
+        _myChannelView = [[UIView alloc] init];
+        _myChannelView.frame = CGRectMake(0, 64, 375, 200);
+        _myChannelView.backgroundColor = [UIColor redColor];
+    }
+    return _myChannelView;
 }
 
 @end

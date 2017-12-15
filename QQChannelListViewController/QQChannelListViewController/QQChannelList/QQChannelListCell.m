@@ -116,7 +116,7 @@
 - (UIImageView *)deleteImageView {
     if (_deleteImageView == nil) {
         _deleteImageView = [[UIImageView alloc] init];
-        _deleteImageView.image = [UIImage imageNamed:@"qq_channel_list_delete"];
+        _deleteImageView.image = [UIImage imageNamed:@"qq_news_channel_list_delete"];
         _deleteImageView.hidden = YES;
     }
     return _deleteImageView;
