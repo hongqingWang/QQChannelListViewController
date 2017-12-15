@@ -162,7 +162,7 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     QQChannelListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:qqChannelListCellIdentifier forIndexPath:indexPath];
     
     cell.channel = (indexPath.section == 0) ? self.myChannelArrayM[indexPath.row] : self.recommandChannelArrayM[indexPath.row];
-    cell.deleteImageView.hidden = (self.isEdit && cell.channel.editable) ? NO : YES;
+    cell.deleteImageView.hidden = (self.isEdit && cell.channel.editable && !cell.channel.resident) ? NO : YES;
     
     return cell;
 }
@@ -203,21 +203,18 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
     if (indexPath.section == 0 && self.isEdit) {
         
         QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        cell.channel.channelType = RecommandChannel;
-//        cell.channel.editable = NO;
-        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-        [self.myChannelArrayM removeObjectAtIndex:indexPath.item];
-        [self.recommandChannelArrayM insertObject:cell.channel atIndex:0];
-//        [self.recommandChannelArrayM addObject:cell.channel];
-        NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:0 inSection:1];
         
-        [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:destinationIndexPath];
-        
-        for (QQChannel *channel in self.myChannelArrayM) {
-            NSLog(@"--- %@", channel.title);
-        }
-        for (QQChannel *channel in self.recommandChannelArrayM) {
-            NSLog(@"--- %@", channel.title);
+        if (cell.channel.resident) {
+            return;
+        } else {
+            
+            cell.channel.channelType = RecommandChannel;
+            //        cell.channel.editable = NO;
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            [self.myChannelArrayM removeObjectAtIndex:indexPath.item];
+            [self.recommandChannelArrayM insertObject:cell.channel atIndex:0];
+            NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:0 inSection:1];
+            [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:destinationIndexPath];
         }
     }
     
@@ -226,21 +223,11 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
         cell.channel.channelType = MyChannel;
 //        cell.channel.editable = YES;
-//        [self.collectionView reloadData];
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [self.recommandChannelArrayM removeObjectAtIndex:indexPath.item];
         [self.myChannelArrayM addObject:cell.channel];
         NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:self.myChannelArrayM.count - 1 inSection:0];
-        
         [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:destinationIndexPath];
-//        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-        
-        for (QQChannel *channel in self.myChannelArrayM) {
-            NSLog(@"=== %@", channel.title);
-        }
-        for (QQChannel *channel in self.recommandChannelArrayM) {
-            NSLog(@"=== %@", channel.title);
-        }
     }
 }
 
