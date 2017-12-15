@@ -35,9 +35,6 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 /// HeaderSubTitle
 @property (nonatomic, strong) NSArray *headerSubTitles;
 
-/// MyChannelView
-@property (nonatomic, strong) UIView *myChannelView;
-
 @end
 
 @implementation QQChannelListView
@@ -113,8 +110,24 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 ////        return;
 //    }
     
+    
+    
+    
+    
     CGPoint point = [longPress locationInView:self.collectionView];
     NSIndexPath *sourceIndexPath = [self.collectionView indexPathForItemAtPoint:point];
+    
+    NSLog(@"%@", NSStringFromCGPoint(point));
+    // 如果
+//    if (sourceIndexPath.section != 0) {
+//        NSLog(@"aaaa");
+//    }
+    
+//    if (sourceIndexPath.section == 0 && sourceIndexPath.item == 0) {
+//        NSLog(@"aaa");
+//        return;
+//    }
+    
     
     switch (longPress.state) {
         case UIGestureRecognizerStateBegan:
@@ -129,6 +142,9 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
             break;
         case UIGestureRecognizerStateEnded:
         {
+//            if (sourceIndexPath.section == 1) {
+//                return;
+//            }
             [self.collectionView endInteractiveMovement];
         }
             break;
@@ -185,7 +201,9 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+//    if (indexPath.section == 0 && indexPath.row == 1) {
+//        return NO;
+//    }
     QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
     return (indexPath.section == 0 && !cell.channel.resident) ? YES : NO;
 }
@@ -236,10 +254,16 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     
+//    if (destinationIndexPath.section == 0 && destinationIndexPath.row == 0) {
+//        NSLog(@"移动到固定标签位置了");
+//        return;
+//    }
+    
     QQChannel *channel = self.myChannelArrayM[sourceIndexPath.item];
     [self.myChannelArrayM removeObjectAtIndex:sourceIndexPath.item];
     
     if (destinationIndexPath.section == 0) {
+        
         [self.myChannelArrayM insertObject:channel atIndex:destinationIndexPath.item];
     } else if (destinationIndexPath.section == 1) {
         channel.channelType = RecommandChannel;
@@ -313,15 +337,6 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
                              ];
     }
     return _headerSubTitles;
-}
-
-- (UIView *)myChannelView {
-    if (_myChannelView == nil) {
-        _myChannelView = [[UIView alloc] init];
-        _myChannelView.frame = CGRectMake(0, 64, 375, 200);
-        _myChannelView.backgroundColor = [UIColor redColor];
-    }
-    return _myChannelView;
 }
 
 @end
