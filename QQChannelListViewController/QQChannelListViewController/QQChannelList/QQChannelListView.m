@@ -207,10 +207,18 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
 //        cell.channel.editable = NO;
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [self.myChannelArrayM removeObjectAtIndex:indexPath.item];
-        [self.recommandChannelArrayM addObject:cell.channel];
-        NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:self.recommandChannelArrayM.count - 1 inSection:1];
+        [self.recommandChannelArrayM insertObject:cell.channel atIndex:0];
+//        [self.recommandChannelArrayM addObject:cell.channel];
+        NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:0 inSection:1];
         
         [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:destinationIndexPath];
+        
+        for (QQChannel *channel in self.myChannelArrayM) {
+            NSLog(@"--- %@", channel.title);
+        }
+        for (QQChannel *channel in self.recommandChannelArrayM) {
+            NSLog(@"--- %@", channel.title);
+        }
     }
     
     if (indexPath.section == 1) {
@@ -218,12 +226,21 @@ static NSString *const qqChannelListHeaderViewIdentifier = @"qqChannelListHeader
         QQChannelListCell *cell = (QQChannelListCell *)[collectionView cellForItemAtIndexPath:indexPath];
         cell.channel.channelType = MyChannel;
 //        cell.channel.editable = YES;
+//        [self.collectionView reloadData];
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [self.recommandChannelArrayM removeObjectAtIndex:indexPath.item];
         [self.myChannelArrayM addObject:cell.channel];
         NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForItem:self.myChannelArrayM.count - 1 inSection:0];
         
         [self.collectionView moveItemAtIndexPath:indexPath toIndexPath:destinationIndexPath];
+//        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        
+        for (QQChannel *channel in self.myChannelArrayM) {
+            NSLog(@"=== %@", channel.title);
+        }
+        for (QQChannel *channel in self.recommandChannelArrayM) {
+            NSLog(@"=== %@", channel.title);
+        }
     }
 }
 
