@@ -13,7 +13,6 @@
 		0492C2A91FDF87DA00997023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0492C2A81FDF87DA00997023 /* Assets.xcassets */; };
 		0492C2AC1FDF87DA00997023 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0492C2AA1FDF87DA00997023 /* LaunchScreen.storyboard */; };
 		0492C2AF1FDF87DA00997023 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2AE1FDF87DA00997023 /* main.m */; };
-		0492C2B81FDFA9A600997023 /* QQChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */; };
 		0492C2BB1FDFB5EE00997023 /* QQChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2BA1FDFB5EE00997023 /* QQChannel.m */; };
 		0492C2C01FDFC3B600997023 /* QQChannelList.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */; };
 		0492C2C31FDFC72C00997023 /* QQChannelListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492C2C21FDFC72C00997023 /* QQChannelListView.m */; };
@@ -34,8 +33,6 @@
 		0492C2AB1FDF87DA00997023 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0492C2AD1FDF87DA00997023 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0492C2AE1FDF87DA00997023 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0492C2B61FDFA9A600997023 /* QQChannelListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannelListViewController.h; sourceTree = "<group>"; };
-		0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannelListViewController.m; sourceTree = "<group>"; };
 		0492C2B91FDFB5EE00997023 /* QQChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQChannel.h; sourceTree = "<group>"; };
 		0492C2BA1FDFB5EE00997023 /* QQChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQChannel.m; sourceTree = "<group>"; };
 		0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QQChannelList.xcassets; sourceTree = "<group>"; };
@@ -113,8 +110,6 @@
 				0492C2B91FDFB5EE00997023 /* QQChannel.h */,
 				0492C2BA1FDFB5EE00997023 /* QQChannel.m */,
 				0492C2BF1FDFC3B600997023 /* QQChannelList.xcassets */,
-				0492C2B61FDFA9A600997023 /* QQChannelListViewController.h */,
-				0492C2B71FDFA9A600997023 /* QQChannelListViewController.m */,
 			);
 			path = QQChannelList;
 			sourceTree = "<group>";
@@ -268,7 +263,6 @@
 				04ACD6321FE0D9500028D439 /* QQChannelListViewFlowLayout.m in Sources */,
 				0492C2A41FDF87DA00997023 /* ViewController.m in Sources */,
 				0492C2AF1FDF87DA00997023 /* main.m in Sources */,
-				0492C2B81FDFA9A600997023 /* QQChannelListViewController.m in Sources */,
 				0492C2A11FDF87DA00997023 /* AppDelegate.m in Sources */,
 				04ACD6381FE114560028D439 /* QQChannelListCell.m in Sources */,
 				04ACD6351FE0F7D50028D439 /* QQChannelListHeaderView.m in Sources */,

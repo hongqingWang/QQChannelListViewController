@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "QQChannelListViewController.h"
 #import "QQChannelListView.h"
 #import "QQChannel.h"
 
